@@ -7,9 +7,13 @@ function gerarFaturaStr (fatura, pecas) {
     const formato = new Intl.NumberFormat("pt-BR",
                           { style: "currency", currency: "BRL",
                             minimumFractionDigits: 2 }).format;
+
+    function getPeca(apresentacao) {
+      return pecas[apresentacao.id];
+    }                        
   
     for (let apre of fatura.apresentacoes) {
-      const peca = pecas[apre.id];
+      const peca = getPeca(apre);
       
       function calcularTotalApresentacao(apre, peca) {
         let total = 0;
